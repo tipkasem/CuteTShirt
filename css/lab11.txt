@@ -1,0 +1,12 @@
+1. CREATE USER Admin IDENTIFIED BY 'pass';
+GRANT ALL PRIVILEGES on bank.* to 'Admin' IDENTIFIED BY 'pass';
+
+CREATE USER Officer IDENTIFIED BY 'pass2';
+GRANT SELECT, INSERT, UPDATE, DELETE on bank.* to 'officer' identified by 'pass2';
+
+2. Alter table account modify No varchar(255);
+Alter table account modify name varchar(255);
+Alter table transaction modify accid varchar(255);
+Alter table transaction modify type varchar(255);
+Update account set No=AES_ENCRYPT(No,SHA1(name)),name=AES_ENCRYPT(name,SHA1(name));
+Update transaction set type=AES_ENCRYPT(type,SHA1(name)),accid=AES_ENCRYPT(accid,SHA1(name));
